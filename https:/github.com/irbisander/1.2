@@ -1,0 +1,11 @@
+Select s.name as Name, s.surname as Surname, s.gradesAvg as Grades
+From students s
+where not s.gradesAvg <= 2 and not s.gradesAvg >= 5;
+
+Select s.name as Name, s.surname as Surname, s.gradesAvg as Grades
+From students s
+where s.gradesAvg between 3 and 4;
+
+Select s.name as Name, s.surname as Surname, s.gradesAvg as Grades
+From students s
+where s.gradesAvg in (3, 4);
