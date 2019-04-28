@@ -308,17 +308,20 @@ as Select N_Z, NAME, SURNAME
 From STUDENTS S
 ORDER by SCORE desc;
 
-/*22.*/--еще не сделал
+/*22.*/
 Create or replace VIEW V
 as Select tkl.COURS, hobbie
 From (Select substr(S.group,1,1) as COURS From STUDENTS S where )tk1
 LEFT JOIN (
-	select substr(S1.group,1,1) as COURS_O, count(*) as hbs
+	select substr(S1.group,1,1) as COURS_O, s_h.id  as hbs,h.name, count(*) as c
 	From STUDENTS S1
-	INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
-	INNER JOIN HOBBIES H on H.ID_H = s_h.ID_H
-
+		LEFT JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
+		LEFT JOIN HOBBIES H on H.ID_H = s_h.ID_H
+	GROUP BY hbs
+	ORDER BY c
+	Limit 1
 	)
+	on  tkl.COURS=COURS_O
 	
 /*23.*/
 
