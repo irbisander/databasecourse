@@ -309,6 +309,13 @@ From STUDENTS S
 ORDER by SCORE desc;
 
 /*22.*/--думаю
+Create or replace VIEW V
+as Select distinct substr(S.group,1,1) as COURS, h.name
+		From STUDENTS S
+			INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
+			INNER JOIN HOBBIES H on H.ID_H = s_h.ID_H
+where h.name=
+group by COURS,hobbie
 		/*
 Create or replace VIEW V
 as Select tkl.COURS, hobbie
@@ -324,16 +331,32 @@ LEFT JOIN (
 	)
 	on  tkl.COURS=COURS_O
 	*/
+		/*
 Create or replace VIEW V
 as Select tk1.COURS ,H.name as hobbie
 From (Select DISTINCT substr(S.group,1,1) as COURS From STUDENTS S )tk1
-		LEFT JOIN () on tkl.COURS=COURS_O
+		LEFT JOIN (SELECT MAX(counted) FROM
+(
+    SELECT COUNT(*) AS counted
+    FROM STUDENTS_HOBBIES s_h
+    GROUP BY s_h.id
+) AS counts) on tkl.COURS=COURS_O
+		*/
 /*From STUDENTS S
 		INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
 		INNER HOBBIES H on H.ID_H = s_h.ID_H
 GROUP BY COURS,hobbie
 
  */
+SELECT
+  COURS,
+  max(size_count)
+FROM (SELECT
+        COURS,
+        count(DISTINCT size) size_count
+      FROM properties
+      GROUP BY COURS, H.ID_H) t
+GROUP BY t.ladder;
 /*23.*/
 
 /*24. */
