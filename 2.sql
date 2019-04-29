@@ -308,14 +308,18 @@ as Select N_Z, NAME, SURNAME
 From STUDENTS S
 ORDER by SCORE desc;
 
-/*22.*/--думаю
+/*22.*/
 Create or replace VIEW V
-as Select distinct substr(S.group,1,1) as COURS, h.id
-		From STUDENTS S
+as 
+		Select distinct substr(S1.group,1,1) as COURS, tk1.hobbie
+		From STUDENTS S1, (
+			Select H.name as hobbie, count(*) from  From STUDENTS S
 			INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
 			INNER JOIN HOBBIES H on H.ID_H = s_h.ID_H
-where h.id=(select from )
-group by COURS,hobbie
+			where COURS=substr(S.group,1,1)
+			group by hobbie
+		)tk1
+			
 		/*
 Create or replace VIEW V
 as Select tkl.COURS, hobbie
