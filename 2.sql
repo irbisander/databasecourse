@@ -310,11 +310,11 @@ ORDER by SCORE desc;
 
 /*22.*/--думаю
 Create or replace VIEW V
-as Select distinct substr(S.group,1,1) as COURS, h.name
+as Select distinct substr(S.group,1,1) as COURS, h.id
 		From STUDENTS S
 			INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
 			INNER JOIN HOBBIES H on H.ID_H = s_h.ID_H
-where h.name=
+where h.id=(select from )
 group by COURS,hobbie
 		/*
 Create or replace VIEW V
