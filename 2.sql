@@ -308,7 +308,8 @@ as Select N_Z, NAME, SURNAME
 From STUDENTS S
 ORDER by SCORE desc;
 
-/*22.*/
+/*22.*/--думаю
+		/*
 Create or replace VIEW V
 as Select tkl.COURS, hobbie
 From (Select substr(S.group,1,1) as COURS From STUDENTS S where )tk1
@@ -322,7 +323,17 @@ LEFT JOIN (
 	Limit 1
 	)
 	on  tkl.COURS=COURS_O
-	
+	*/
+Create or replace VIEW V
+as Select tk1.COURS ,H.name as hobbie
+From (Select DISTINCT substr(S.group,1,1) as COURS From STUDENTS S )tk1
+		LEFT JOIN () on tkl.COURS=COURS_O
+/*From STUDENTS S
+		INNER JOIN STUDENTS_HOBBIES s_h on S.N_Z = s_h.N_Z
+		INNER HOBBIES H on H.ID_H = s_h.ID_H
+GROUP BY COURS,hobbie
+
+ */
 /*23.*/
 
 /*24. */
