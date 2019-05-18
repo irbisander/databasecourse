@@ -84,15 +84,23 @@ limit 1
 ;
 
 --7
-SELECT Groups.Name, Album.Name
-FROM Groups
-Left join Album
-On Groups.idGroup = Album.idAlbum
-Where Album.Genre = (
-	select Genre as g
-    from Album as a
-	Group by g
-    Order by count(*) desc
-    Limit 1
-    )
+SELECT 
+    Groups.Name, t1.Name
+FROM
+    Groups
+        INNER JOIN
+    (SELECT 
+        *
+    FROM
+        Compositions
+    INNER JOIN Albums ON Compositions.idComposition = Album.Compositions_idComposition) AS t1 ON Groups.idGroup = t1.Groups_idGroup
+WHERE
+    t1.Genre = (SELECT 
+            Genre AS g
+        FROM
+            Album AS a
+        GROUP BY g
+        ORDER BY COUNT(*)
+        LIMIT 1)
+
 ;
