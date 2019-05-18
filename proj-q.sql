@@ -117,7 +117,7 @@ having c>1
 ;
 
 --9
-Select distinct t1.Genre
+Select distinct t1.Genre,name1.Name,name2.Name,name3.Name
 From mus.Traks as t1
 left join (SELECT t2.Name,t2.Genre
     FROM   mus.Traks as t2
