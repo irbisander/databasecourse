@@ -140,3 +140,13 @@ left join   (
 on name2.Genre=name3.Genre
 
 ;
+--10
+Select g.Name,count(*) as Count
+from mus.Groups as g
+left join mus.Compositions as c
+on g.idGroup = c.Groups_idGroup 
+left join mus.Albums as a
+on c.idComposition = a.Compositions_idComposition
+Where(year('1987-01-01')=year(a.Date))
+Group by g.idGroup
+;
