@@ -104,3 +104,14 @@ WHERE
         LIMIT 1)
 
 ;
+--8
+SELECT Musicians.idMusician as id,Musicians.Name,count(*) as c from mus.Musicians 
+inner join mus.Compositions_Musitians
+on mus.Musicians.idMusician=mus.Compositions_Musitians.Musicians_idMusician
+left join mus.Compositions
+on mus.Compositions_Musitians.Compositions_idComposition=mus.Compositions.idComposition
+left join mus.Groups
+on mus.Compositions.Groups_idGroup=mus.Groups.idGroup
+Group by id
+having c>1
+;
