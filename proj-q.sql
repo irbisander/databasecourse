@@ -74,3 +74,11 @@ DELETE FROM `mus`.`Musicians` WHERE (`idMusician` = '1');
 DELETE FROM `mus`.`Traks` WHERE (`idTrak` = '1');
 
 --6
+SELECT Groups.Name,count(*) as count
+FROM mus.Groups
+inner Join mus.Compositions 
+On  Groups.idGroup = Compositions.`Groups_idGroup`
+Group by Groups.idGroup
+Order by count DESC
+limit 1
+;
