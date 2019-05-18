@@ -115,3 +115,28 @@ on mus.Compositions.Groups_idGroup=mus.Groups.idGroup
 Group by id
 having c>1
 ;
+
+--9
+Select distinct t1.Genre
+From mus.Traks as t1
+left join (SELECT t2.Name,t2.Genre
+    FROM   mus.Traks as t2
+    order by During ASC
+    limit 1
+    ) AS name1
+on name1.Genre=t1.Genre
+left join (SELECT t3.Name,t3.Genre
+    FROM   mus.Traks as t3
+    order by During ASC
+    limit 1,1
+    ) AS name2
+on name1.Genre=name2.Genre
+left join   (
+   SELECT t4.Name,t4.Genre
+    FROM   mus.Traks as t4
+    order by During ASC
+    limit 2,1
+    ) AS name3
+on name2.Genre=name3.Genre
+
+;
