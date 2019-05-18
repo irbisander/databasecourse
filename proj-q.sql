@@ -82,3 +82,17 @@ Group by Groups.idGroup
 Order by count DESC
 limit 1
 ;
+
+--7
+SELECT Groups.Name, Album.Name
+FROM Groups
+Left join Album
+On Groups.idGroup = Album.idAlbum
+Where Album.Genre = (
+	select Genre as g
+    from Album as a
+	Group by g
+    Order by count(*) desc
+    Limit 1
+    )
+;
