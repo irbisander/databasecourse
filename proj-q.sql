@@ -121,12 +121,14 @@ Select distinct t1.Genre,name1.Name,name2.Name,name3.Name
 From mus.Traks as t1
 left join (SELECT t2.Name,t2.Genre
     FROM   mus.Traks as t2
+    Where t1.Genre=t2.Genre
     order by During ASC
     limit 1
     ) AS name1
 on name1.Genre=t1.Genre
 left join (SELECT t3.Name,t3.Genre
     FROM   mus.Traks as t3
+    Where t1.Genre=t3.Genre
     order by During ASC
     limit 1,1
     ) AS name2
@@ -134,6 +136,7 @@ on name1.Genre=name2.Genre
 left join   (
    SELECT t4.Name,t4.Genre
     FROM   mus.Traks as t4
+    Where t1.Genre=t4.Genre
     order by During ASC
     limit 2,1
     ) AS name3
