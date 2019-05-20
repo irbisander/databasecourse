@@ -74,6 +74,7 @@ DELETE FROM `mus`.`Musicians` WHERE (`idMusician` = '1');
 DELETE FROM `mus`.`Traks` WHERE (`idTrak` = '1');
 
 --6
+-- он же выводит просто название группы и количество композиций (а не группу, состав которой менялся чаще всего)
 SELECT Groups.Name,count(*) as count
 FROM mus.Groups
 inner Join mus.Compositions 
@@ -84,6 +85,7 @@ limit 1
 ;
 
 --7
+-- тут чето все нето с таблицами
 SELECT 
     Groups.Name, t1.Name
 FROM
@@ -105,6 +107,7 @@ WHERE
 
 ;
 --8
+-- Данных добавь, чтобы нормально проверить
 SELECT Musicians.idMusician as id,Musicians.Name,count(*) as c from mus.Musicians 
 inner join mus.Compositions_Musitians
 on mus.Musicians.idMusician=mus.Compositions_Musitians.Musicians_idMusician
@@ -144,6 +147,7 @@ on name2.Genre=name3.Genre
 
 ;
 --10
+-- аналогично, поправь таблицы
 Select g.Name,count(*) as Count
 from mus.Groups as g
 left join mus.Compositions as c
