@@ -116,7 +116,7 @@ Group by id
 having c>1
 ;
 
---9
+--9 ошибка
 Select distinct t1.Genre,name1.Name,name2.Name,name3.Name
 From mus.Traks as t1
 left join (SELECT t2.Name,t2.Genre
