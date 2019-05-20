@@ -166,3 +166,15 @@ on a.Compositions_idComposition=c.idComposition
 left join mus.Albums_Traks as a_t
 on a_t.Albums_idAlbum=a.idAlbum
 where g.Name like "%Saban%"
+
+--11.2
+                              /*вывести всех гитаристов исполняющих жанр*/
+Select m.idMusician,m.Name
+from mus.Musicians as m
+right join mus.Compositions_Musitians as c_m
+on m.idMusician=c_m.Musicians_idMusician
+left join mus.Compositions as c
+on c.idComposition=c_m.Compositions_idComposition
+left join mus.Albums as a
+on a.Compositions_idComposition=c.idComposition
+where (c_m.role like "%guitar%") and (a.Genre like "Jazz")
