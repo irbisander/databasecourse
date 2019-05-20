@@ -153,3 +153,16 @@ on c.idComposition = a.Compositions_idComposition
 Where(year('1987-01-01')=year(a.Date))
 Group by g.idGroup
 ;
+--11.1
+                              Вывести все треки выбранной группы, их продолжительность и альбомы, в которые они были внесены
+Select t.Name,t.During,g.Name,a.Name
+from mus.Groups as g
+right join mus.Traks as t
+on g.idGroup=t.Groups_idGroup
+left join mus.Compositions as c
+on c.Groups_idGroup=g.idGroup
+left join mus.Albums as a
+on a.Compositions_idComposition=c.idComposition
+left join mus.Albums_Traks as a_t
+on a_t.Albums_idAlbum=a.idAlbum
+where g.Name like "%Saban%"
